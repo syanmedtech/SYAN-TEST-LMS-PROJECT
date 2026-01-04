@@ -4,14 +4,23 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Syan Medical QBank</title>
+    <!-- Shim for process.env to prevent crashes on Vercel/Vite environments -->
+    <script>
+      window.process = {
+        env: {
+          NODE_ENV: 'production',
+          // Fallback mapping for keys used in the app
+          API_KEY: '' 
+        }
+      };
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
-        darkMode: 'class', // Enable class-based dark mode
+        darkMode: 'class',
         theme: {
           extend: {
             colors: {
-              // Syan Brand Colors
               syan: {
                 orange: '#F49E4C',
                 pink: '#EF5D66',
@@ -24,14 +33,14 @@
                 200: '#9CD9FF',
                 300: '#64C1FF',
                 400: '#32A6FA',
-                500: '#0A8BC2', // Base Blue
+                500: '#0A8BC2',
                 600: '#006E9E',
                 700: '#005880',
                 800: '#004363',
                 900: '#002F46',
               },
               slate: {
-                850: '#1B1B1B', // Dark Text
+                850: '#1B1B1B',
                 900: '#0f172a',
                 950: '#020617',
               }
@@ -88,7 +97,6 @@
         background-color: #020617;
         color: #f8fafc;
       }
-      /* Custom scrollbar */
       ::-webkit-scrollbar {
         width: 6px;
         height: 6px;
@@ -156,5 +164,7 @@
 </head>
   <body>
     <div id="root"></div>
+    <!-- Load the main entry point -->
+    <script type="module" src="/index.tsx"></script>
   </body>
 </html>
